@@ -125,7 +125,7 @@ function App() {
                                 fontSize: '14px',
                                 textAlign: 'center'
                             }}>
-                                • Меню {isMenuExpanded ? 'развернуто' : 'свернуто'}
+                                Bonjour! Hola! Ciao! 你好! Merhaba!
                             </p>
                         </motion.div>
 
