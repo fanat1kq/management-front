@@ -21,4 +21,4 @@ EXPOSE 3002
 
 
 # Start the app - remove problematic -c flag
-CMD ["serve", "-s", "dist", "-l", "3001"]
+CMD ["serve", "-s", "dist", "-l", "3002"]
