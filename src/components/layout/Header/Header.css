@@ -1,0 +1,561 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.demo-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Кнопка уведомлений */
+.header-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Меню пользователя */
+.user-menu-container {
+    position: relative;
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.user-menu-trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.user-avatar-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.user-info-sm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.user-name-sm {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.user-status {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(76, 175, 80, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-top: 2px;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Выпадающее меню */
+.user-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 280px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+}
+
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.user-avatar-md {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.user-details {
+    flex-grow: 1;
+}
+
+.user-name-md {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.user-email-md {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.user-menu-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 8px 0;
+}
+
+.user-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.user-menu-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.menu-item-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item-text {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.theme-badge {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.notification-badge-sm {
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.logout-btn {
+    color: #ff4757;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+}
+
+.user-menu-footer {
+    padding: 12px 16px 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.app-version {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.app-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4caf50;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 20px;
+    }
+
+    .user-menu-trigger {
+        min-width: auto;
+        padding: 8px 12px;
+    }
+
+    .user-info-sm {
+        display: none;
+    }
+
+    .user-menu-dropdown {
+        min-width: 250px;
+        right: -20px;
+    }
+}
+/* Стили для SVG логотипа */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1e293b;
+}
+
+.logo-svg,
+.target-svg,
+.gradient-svg {
+    width: 24px;
+    height: 24px;
+    color: #667eea; /* Цвет иконки */
+}
+
+.logo-svg-image {
+    width: 79px;
+    height: 79px;
+}
+
+/* Анимация для SVG при hover */
+.header-logo:hover .logo-svg,
+.header-logo:hover .target-svg,
+.header-logo:hover .gradient-svg {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+/* Анимации для картинки БЕЗ ДВИЖЕНИЯ */
+.welcome-image {
+    /* Существующие стили остаются */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+
+    /* Новые анимации БЕЗ движения */
+    animation:
+            gentleAppear 2s ease-out forwards,
+            subtleGlow 4s ease-in-out infinite 2s,
+            colorShift 8s ease-in-out infinite;
+}
+
+/* Плавное появление с легким эффектом */
+@keyframes gentleAppear {
+    0% {
+        opacity: 0;
+        filter: brightness(0.8) contrast(1.2);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1) contrast(1);
+    }
+}
+
+/* Свечение вокруг картинки */
+@keyframes subtleGlow {
+    0%, 100% {
+        box-shadow:
+                inset 0 0 50px rgba(102, 126, 234, 0.1),
+                0 0 30px rgba(102, 126, 234, 0.2);
+    }
+    50% {
+        box-shadow:
+                inset 0 0 80px rgba(102, 126, 234, 0.15),
+                0 0 50px rgba(102, 126, 234, 0.3);
+    }
+}
+
+/* Легкое изменение цвета */
+@keyframes colorShift {
+    0%, 100% {
+        filter: brightness(1) saturate(1) hue-rotate(0deg);
+    }
+    50% {
+        filter: brightness(1.05) saturate(1.1) hue-rotate(5deg);
+    }
+}
+
+/* Эффект глубины с параллаксом для контейнера */
+.welcome-image-container {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.welcome-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    border-radius: 20px;
+    animation: lightDance 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes lightDance {
+    0%, 100% {
+        opacity: 0.3;
+        background-position: 20% 80%, 80% 20%;
+    }
+    50% {
+        opacity: 0.6;
+        background-position: 30% 70%, 70% 30%;
+    }
+}
+
+/* Градиентная рамка с анимацией */
+.welcome-image-container::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+    #667eea, #764ba2, #f093fb, #f5576c,
+    #4facfe, #00f2fe, #667eea);
+    background-size: 400% 400%;
+    border-radius: 22px;
+    z-index: -1;
+    animation: gradientFlow 8s ease infinite;
+    opacity: 0.7;
+}
+
+@keyframes gradientFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        opacity: 0.5;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
+}
+
+/* Эффект частиц поверх картинки */
+.welcome-image-container .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.welcome-image-container .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: floatParticles 6s ease-in-out infinite;
+}
+
+.welcome-image-container .particle:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.welcome-image-container .particle:nth-child(2) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 1s;
+}
+
+.welcome-image-container .particle:nth-child(3) {
+    top: 40%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.welcome-image-container .particle:nth-child(4) {
+    top: 80%;
+    left: 60%;
+    animation-delay: 3s;
+}
+
+.welcome-image-container .particle:nth-child(5) {
+    top: 10%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+@keyframes floatParticles {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Легкий эффект дрожания света */
+.welcome-image {
+    position: relative;
+}
+
+.welcome-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(125deg,
+    transparent 0%,
+    rgba(255,255,255,0.03) 50%,
+    transparent 100%);
+    animation: lightShimmer 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes lightShimmer {
+    0%, 100% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+/* Адаптивность для анимаций */
+@media (max-width: 768px) {
+    .welcome-image {
+        animation:
+                gentleAppear 1.5s ease-out forwards,
+                subtleGlow 6s ease-in-out infinite 1.5s;
+    }
+
+    /* Упрощаем анимации на мобильных */
+    .welcome-image-container::before,
+    .welcome-image-container::after,
+    .welcome-image::after {
+        display: none;
+    }
+}
+
