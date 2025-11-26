@@ -164,18 +164,7 @@ const SidebarMenu = ({
                     ))}
                 </nav>
 
-                {/* Футер меню */}
-                <div className={`menu-footer ${!isExpanded ? 'collapsed' : ''}`}>
-                    <div className="user-avatar">
-                        {user?.name?.[0]?.toUpperCase() || 'U'}
-                    </div>
-                    {isExpanded && (
-                        <div className="user-info">
-                            <div className="user-name">{user?.name || 'Пользователь'}</div>
-                            <div className="user-email">{user?.email || 'user@example.com'}</div>
-                        </div>
-                    )}
-                </div>
+
             </motion.div>
         </>
     );

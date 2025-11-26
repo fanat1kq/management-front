@@ -10,18 +10,6 @@ export const useAuth = () => {
         const timer = setTimeout(() => {
             console.log('🔐 Демо-режим: автоматический вход');
 
-            const demoUser = {
-                id: 1,
-                username: 'demo-user',
-                email: 'demo@taskflow.ru',
-                name: 'Демо Пользователь',
-                avatar: '👤',
-                joinDate: new Date().toLocaleDateString('ru-RU'),
-                role: 'Пользователь',
-                department: 'Отдел разработки'
-            };
-
-            setUser(demoUser);
             setIsAuthenticated(true);
             setLoading(false);
         }, 500);
