@@ -518,3 +518,164 @@
         height: 50vh;
     }
 }
+/* Мобильные стили с тремя колонками */
+@media (max-width: 768px) {
+    .tasks-container-enhanced {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100vw !important;
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+        padding: 10px 10px !important;
+    }
+
+    .tasks-grid-three-columns {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+        width: max-content !important;
+        min-width: 100% !important;
+        padding: 10px 5px !important;
+    }
+
+    .tasks-column-card {
+        width: 220px !important; /* Уменьшили ширину */
+        min-width: 220px !important;
+        min-height: 450px !important;
+        max-height: 550px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .tasks-list-enhanced {
+        min-height: 350px !important;
+        max-height: 400px !important;
+        overflow-y: auto !important;
+        padding: 12px !important;
+    }
+
+    /* Уменьшаем заголовки */
+    .column-header {
+        padding: 12px 15px !important;
+    }
+
+    .column-title h2 {
+        font-size: 1em !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .column-icon {
+        font-size: 1.2em !important;
+    }
+
+    .task-count {
+        font-size: 0.8em !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Уменьшаем карточки задач */
+    .task-card {
+        padding: 10px !important;
+        margin: 5px 0 !important;
+    }
+
+    .task-title {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+    }
+
+    .task-preview {
+        font-size: 11px !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .task-assignee-section {
+        font-size: 0.8em !important;
+    }
+
+    .task-footer {
+        font-size: 0.75em !important;
+    }
+
+    /* Уменьшаем отступы для add task */
+    .add-task-card {
+        padding: 12px !important;
+    }
+
+    .input-group-enhanced {
+        gap: 8px !important;
+    }
+}
+
+/* Для средних телефонов */
+@media (max-width: 480px) {
+    .tasks-column-card {
+        width: 200px !important;
+        min-width: 200px !important;
+        min-height: 420px !important;
+    }
+
+    .tasks-list-enhanced {
+        min-height: 320px !important;
+        max-height: 370px !important;
+        padding: 10px !important;
+    }
+
+    .column-header {
+        padding: 10px 12px !important;
+    }
+
+    .column-title h2 {
+        font-size: 0.9em !important;
+    }
+}
+
+/* Для очень маленьких телефонов */
+@media (max-width: 360px) {
+    .tasks-column-card {
+        width: 180px !important;
+        min-width: 180px !important;
+        min-height: 400px !important;
+    }
+
+    .tasks-list-enhanced {
+        min-height: 300px !important;
+        max-height: 350px !important;
+        padding: 8px !important;
+    }
+
+    .task-card {
+        padding: 8px !important;
+    }
+
+    .task-title {
+        font-size: 12px !important;
+    }
+
+    /* Скрываем некоторые элементы для экономии места */
+    .task-preview {
+        display: none !important;
+    }
+
+    .assignee-icon {
+        display: none !important;
+    }
+}
+
+/* Для ландшафтной ориентации */
+@media (max-width: 768px) and (orientation: landscape) {
+    .tasks-column-card {
+        min-height: 350px !important;
+        max-height: 400px !important;
+    }
+
+    .tasks-list-enhanced {
+        min-height: 250px !important;
+        max-height: 300px !important;
+    }
+}

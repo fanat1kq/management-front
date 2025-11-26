@@ -11,7 +11,7 @@ function App() {
     const { isAuthenticated, user, loading, logout } = useAuth();
     const { tasks, addTask, updateTask, deleteTask } = useTasks(user?.id);
 
-    const [isMenuExpanded, setIsMenuExpanded] = useState(true);
+    const [isMenuExpanded, setIsMenuExpanded] = useState(false);
     const [activeMenu, setActiveMenu] = useState('dashboard');
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
