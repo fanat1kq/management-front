@@ -6,9 +6,8 @@ const SidebarMenu = ({
                          onToggle,
                          activeMenu,
                          onMenuSelect,
-                         isVisible,
                          onHide,
-                         onShow
+                         user
                      }) => {
     const menuItems = [
         { id: 'dashboard', label: 'Главная', icon: '📊' },
@@ -19,26 +18,9 @@ const SidebarMenu = ({
         { id: 'settings', label: 'Настройки', icon: '⚙️' }
     ];
 
-    // Если меню полностью скрыто, показываем только кнопку для его открытия
-    if (!isVisible) {
-        return (
-            <motion.button
-                className="menu-show-btn"
-                onClick={onShow}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400 }}
-            >
-                ☰
-            </motion.button>
-        );
-    }
-
     return (
         <motion.div
-            className={`sidebar-menu ${isExpanded ? 'expanded' : 'collapsed'} ${!isVisible ? 'hidden' : ''}`}
+            className={`sidebar-menu ${isExpanded ? 'expanded' : 'collapsed'}`}
             initial={{ x: -300 }}
             animate={{ x: 0 }}
             exit={{ x: -300 }}
@@ -64,25 +46,16 @@ const SidebarMenu = ({
             </motion.button>
 
             {/* Кнопка закрытия меню */}
-            <AnimatePresence>
-                {isExpanded && (
-                    <motion.button
-                        className="menu-close-btn"
-                        onClick={onHide}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        ×
-                    </motion.button>
-                )}
-            </AnimatePresence>
+            <motion.button
+                className={`menu-close-btn ${isExpanded ? 'expanded' : 'collapsed'}`}
+                onClick={onHide}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                ×
+            </motion.button>
 
-            {/* Заголовок меню */}
-            {/* Заголовок меню */}
+            {/* Остальной код меню без изменений */}
             <div className={`menu-header ${!isExpanded ? 'collapsed' : ''}`}>
                 <motion.div
                     className="menu-logo"
@@ -90,7 +63,7 @@ const SidebarMenu = ({
                     transition={{ duration: 0.2 }}
                 >
                     <img
-                        src="/images/logo.svg" // Путь от папки public
+                        src="/images/logo.svg"
                         alt="Vnk Logo"
                         className="logo-image"
                     />
@@ -110,7 +83,6 @@ const SidebarMenu = ({
                 </AnimatePresence>
             </div>
 
-            {/* Навигация */}
             <nav className="menu-nav">
                 {menuItems.map((item, index) => (
                     <motion.button
@@ -153,7 +125,6 @@ const SidebarMenu = ({
                             )}
                         </AnimatePresence>
 
-                        {/* Индикатор активного меню */}
                         <AnimatePresence>
                             {activeMenu === item.id && isExpanded && (
                                 <motion.div
@@ -169,7 +140,19 @@ const SidebarMenu = ({
                 ))}
             </nav>
 
-            {/* Декоративные элементы */}
+            {/* Футер меню */}
+            <div className={`menu-footer ${!isExpanded ? 'collapsed' : ''}`}>
+                <div className="user-avatar">
+                    {user?.name?.[0]?.toUpperCase() || 'U'}
+                </div>
+                {isExpanded && (
+                    <div className="user-info">
+                        <div className="user-name">{user?.name || 'Пользователь'}</div>
+                        <div className="user-email">{user?.email || 'user@example.com'}</div>
+                    </div>
+                )}
+            </div>
+
             <AnimatePresence>
                 {isExpanded && (
                     <>

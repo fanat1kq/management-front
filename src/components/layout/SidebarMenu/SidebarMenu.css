@@ -16,7 +16,6 @@
     box-shadow:
             4px 0 25px rgba(102, 126, 234, 0.15),
             inset 1px 0 0 rgba(255, 255, 255, 0.8);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-menu.collapsed {
@@ -27,9 +26,6 @@
     width: 280px;
 }
 
-.sidebar-menu.hidden {
-    transform: translateX(-100%);
-}
 
 /* Кнопка переключения */
 .menu-toggle-btn {
@@ -347,14 +343,6 @@
 }
 
 
-
-.menu-show-btn:hover {
-    transform: scale(1.15);
-    box-shadow:
-            0 8px 25px rgba(102, 126, 234, 0.5),
-            0 0 0 2px rgba(255, 255, 255, 0.9);
-}
-
 /* Адаптивность */
 @media (max-width: 768px) {
     .sidebar-menu {
@@ -399,8 +387,8 @@
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.2);
+    z-index: 10000; /* Увеличьте z-index */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
     border-radius: 8px;
     width: 40px;
@@ -412,6 +400,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.menu-show-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
 }
 /* Стили для логотипа с картинкой */
 .menu-logo {
@@ -456,4 +450,61 @@
 /* Убедитесь, что градиентный фон не перекрывает картинку */
 .menu-logo {
     background: transparent !important;
+}
+/* Кнопка закрытия меню в развернутом состоянии */
+.menu-close-btn.expanded {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+}
+
+/* Кнопка закрытия меню в свернутом состоянии */
+.menu-close-btn.collapsed {
+    position: absolute;
+    top: 70px; /* Под кнопкой переключения */
+    right: -35px;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.menu-close-btn.collapsed:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5);
+}
+
+
+
+/* Стили для основного контента */
+.main-content {
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.main-content.menu-expanded {
+    margin-left: 280px;
+}
+
+.main-content.menu-collapsed {
+    margin-left: 70px;
+}
+
+.main-content.menu-hidden {
+    margin-left: 0;
 }

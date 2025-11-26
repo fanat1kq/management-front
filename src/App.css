@@ -12,7 +12,7 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em rgba(234, 234, 234, 0.67));
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -39,4 +39,19 @@
 
 .read-the-docs {
   color: #888;
+}
+/* Добавьте в ваш CSS */
+.main-content-with-menu.menu-expanded {
+  margin-left: 280px; /* ширина развернутого меню */
+  transition: margin-left 0.3s ease;
+}
+
+.main-content-with-menu.menu-collapsed {
+  margin-left: 70px; /* ширина свернутого меню */
+  transition: margin-left 0.3s ease;
+}
+
+.main-content-with-menu.menu-hidden {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
 }

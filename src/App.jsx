@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth, useTasks } from './hooks';
 import { SidebarMenu, Header } from './components/layout';
 import { Dashboard } from './pages';
@@ -16,34 +16,20 @@ function App() {
     const [activeMenu, setActiveMenu] = useState('dashboard');
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-    // Полное переключение видимости меню
-    const toggleMenuVisibility = () => {
-        setIsMenuVisible(!isMenuVisible);
-        // При показе меню всегда разворачиваем его
-        if (isMenuVisible === false) {
-            setIsMenuExpanded(true);
-        }
-    };
-
     // Переключение между развернутым/свернутым состоянием
     const toggleMenuExpanded = () => {
         setIsMenuExpanded(!isMenuExpanded);
+    };
+
+    // Переключение видимости меню
+    const toggleMenuVisibility = () => {
+        setIsMenuVisible(!isMenuVisible);
     };
 
     // Полное скрытие меню
     const hideMenu = () => {
         setIsMenuVisible(false);
     };
-
-    console.log('App state:', {
-        isAuthenticated,
-        loading,
-        user: user?.name,
-        isMenuVisible,
-        isMenuExpanded
-    });
-
-    // ... остальной код без изменений
 
     if (loading) {
         return (
@@ -113,17 +99,56 @@ function App() {
                 </div>
             </div>
 
-            <SidebarMenu
-                isExpanded={isMenuExpanded}
-                isVisible={isMenuVisible}
-                onToggle={toggleMenuExpanded}  // Теперь это переключает только expanded/colapsed
-                onHide={hideMenu}              // Полное скрытие
-                onShow={() => setIsMenuVisible(true)}  // Добавьте эту функцию
-                activeMenu={activeMenu}
-                onMenuSelect={setActiveMenu}
-                user={user}
-            />
-            <div className={`main-content-with-menu ${isMenuVisible ? (isMenuExpanded ? '' : 'menu-collapsed') : 'menu-hidden'}`}>
+            {/* Кнопка переключения меню - ВСЕГДА ВИДИМА */}
+            <motion.button
+                className="menu-show-btn"
+                onClick={toggleMenuVisibility}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400 }}
+                style={{
+                    position: 'fixed',
+                    top: '20px',
+                    left: '150px',
+                    zIndex: 10000,
+                    background: isMenuVisible
+                        ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
+                        : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    width: '50px',
+                    height: '50px',
+                    color: 'white',
+                    fontSize: '20px',
+                    cursor: 'pointer',
+                    boxShadow: isMenuVisible
+                        ? '0 4px 15px rgba(239, 68, 68, 0.4)'
+                        : '0 4px 15px rgba(102, 126, 234, 0.4)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+            >
+                {isMenuVisible ? '✕' : '☰'}
+            </motion.button>
+
+            {/* Меню */}
+            <AnimatePresence>
+                {isMenuVisible && (
+                    <SidebarMenu
+                        isExpanded={isMenuExpanded}
+                        onToggle={toggleMenuExpanded}
+                        onHide={hideMenu}
+                        activeMenu={activeMenu}
+                        onMenuSelect={setActiveMenu}
+                        user={user}
+                    />
+                )}
+            </AnimatePresence>
+
+            <div className={`main-content-with-menu ${isMenuVisible ? (isMenuExpanded ? 'menu-expanded' : 'menu-collapsed') : 'menu-hidden'}`}>
                 <Header
                     user={user}
                     onLogout={logout}
@@ -151,7 +176,7 @@ function App() {
                                 fontSize: '14px',
                                 textAlign: 'center'
                             }}>
-                                 • Меню {isMenuVisible ? (isMenuExpanded ? 'развернуто' : 'свернуто') : 'скрыто'}
+
                             </p>
                         </motion.div>
 
@@ -161,6 +186,7 @@ function App() {
                             onUpdateTask={updateTask}
                             onDeleteTask={deleteTask}
                             activeMenu={activeMenu}
+                            user={user}
                         />
                     </div>
                 </main>
