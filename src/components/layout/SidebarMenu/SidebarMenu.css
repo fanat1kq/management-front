@@ -538,3 +538,81 @@
             0 6px 20px rgba(102, 126, 234, 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
 }
+/* Мобильные стили - максимальное скрытие */
+@media (max-width: 768px) {
+    .menu-toggle-button {
+        position: fixed !important;
+        top: 10px !important;
+        left: 10px !important;
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 20px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow:
+                0 4px 25px rgba(102, 126, 234, 0.8),
+                0 0 0 3px rgba(255, 255, 255, 0.4) !important;
+        z-index: 10001 !important;
+    }
+
+    .sidebar-menu {
+        width: 100% !important;
+        max-width: 320px;
+    }
+
+    .sidebar-menu.expanded {
+        width: 100% !important;
+        max-width: 320px;
+        transform: translateX(0) !important;
+    }
+
+    .sidebar-menu.collapsed {
+        width: 20px !important; /* Почти полностью скрыто */
+        min-width: 20px !important;
+        transform: translateX(-95%) !important; /* Сдвигаем влево */
+    }
+
+    /* Скрываем все содержимое в свернутом состоянии */
+    .sidebar-menu.collapsed .menu-header,
+    .sidebar-menu.collapsed .menu-nav,
+    .sidebar-menu.collapsed .menu-footer,
+    .sidebar-menu.collapsed .menu-decoration-1,
+    .sidebar-menu.collapsed .menu-decoration-2 {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+
+    /* Основной контент занимает все место */
+    .main-content-with-menu.menu-collapsed {
+        margin-left: 20px !important;
+        width: calc(100% - 20px) !important;
+    }
+
+    .main-content-with-menu.menu-expanded {
+        margin-left: 320px !important;
+        width: calc(100% - 320px) !important;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .sidebar-menu.collapsed {
+        width: 15px !important;
+        min-width: 15px !important;
+        transform: translateX(-90%) !important;
+    }
+
+    .menu-toggle-button {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 18px !important;
+        top: 8px !important;
+        left: 8px !important;
+    }
+
+    .main-content-with-menu.menu-collapsed {
+        margin-left: 15px !important;
+        width: calc(100% - 15px) !important;
+    }
+}
