@@ -36,7 +36,7 @@ const Header = ({ user, onLogout, onProfileOpen }) => {
 
     return (
         <header className="header">
-            <div className="header-left">
+            <div className="header-left" style={{marginLeft: '50px'}}>
                 <motion.div
                     className="header-logo"
                     whileHover={{scale: 1.05, rotate: 5}}
@@ -55,12 +55,12 @@ const Header = ({ user, onLogout, onProfileOpen }) => {
                     animate={{opacity: 1, scale: 1}}
                     transition={{delay: 0.3}}
                 >
-                top-secret
+                    top-secret
                 </motion.div>
             </div>
 
             <div className="header-right">
-                {/* Уведомления */}
+            {/* Уведомления */}
                 <motion.button
                     className="header-btn notification-btn"
                     whileHover={{ scale: 1.1 }}

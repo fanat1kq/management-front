@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useAuth, useTasks } from './hooks';
 import { SidebarMenu, Header } from './components/layout';
 import { Dashboard } from './pages';
@@ -11,7 +11,6 @@ function App() {
     const { isAuthenticated, user, loading, logout } = useAuth();
     const { tasks, addTask, updateTask, deleteTask } = useTasks(user?.id);
 
-    const [isMenuVisible, setIsMenuVisible] = useState(true);
     const [isMenuExpanded, setIsMenuExpanded] = useState(true);
     const [activeMenu, setActiveMenu] = useState('dashboard');
     const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -19,16 +18,6 @@ function App() {
     // Переключение между развернутым/свернутым состоянием
     const toggleMenuExpanded = () => {
         setIsMenuExpanded(!isMenuExpanded);
-    };
-
-    // Переключение видимости меню
-    const toggleMenuVisibility = () => {
-        setIsMenuVisible(!isMenuVisible);
-    };
-
-    // Полное скрытие меню
-    const hideMenu = () => {
-        setIsMenuVisible(false);
     };
 
     if (loading) {
@@ -99,56 +88,16 @@ function App() {
                 </div>
             </div>
 
-            {/* Кнопка переключения меню - ВСЕГДА ВИДИМА */}
-            <motion.button
-                className="menu-show-btn"
-                onClick={toggleMenuVisibility}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400 }}
-                style={{
-                    position: 'fixed',
-                    top: '20px',
-                    left: '150px',
-                    zIndex: 10000,
-                    background: isMenuVisible
-                        ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
-                        : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    border: 'none',
-                    borderRadius: '8px',
-                    width: '50px',
-                    height: '50px',
-                    color: 'white',
-                    fontSize: '20px',
-                    cursor: 'pointer',
-                    boxShadow: isMenuVisible
-                        ? '0 4px 15px rgba(239, 68, 68, 0.4)'
-                        : '0 4px 15px rgba(102, 126, 234, 0.4)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-            >
-                {isMenuVisible ? '✕' : '☰'}
-            </motion.button>
+            {/* Меню ВСЕГДА видимо, только сворачивается/разворачивается */}
+            <SidebarMenu
+                isExpanded={isMenuExpanded}
+                onToggle={toggleMenuExpanded}
+                activeMenu={activeMenu}
+                onMenuSelect={setActiveMenu}
+                user={user}
+            />
 
-            {/* Меню */}
-            <AnimatePresence>
-                {isMenuVisible && (
-                    <SidebarMenu
-                        isExpanded={isMenuExpanded}
-                        onToggle={toggleMenuExpanded}
-                        onHide={hideMenu}
-                        activeMenu={activeMenu}
-                        onMenuSelect={setActiveMenu}
-                        user={user}
-                    />
-                )}
-            </AnimatePresence>
-
-            <div className={`main-content-with-menu ${isMenuVisible ? (isMenuExpanded ? 'menu-expanded' : 'menu-collapsed') : 'menu-hidden'}`}>
+            <div className={`main-content-with-menu ${isMenuExpanded ? 'menu-expanded' : 'menu-collapsed'}`}>
                 <Header
                     user={user}
                     onLogout={logout}
@@ -176,7 +125,7 @@ function App() {
                                 fontSize: '14px',
                                 textAlign: 'center'
                             }}>
-
+                                • Меню {isMenuExpanded ? 'развернуто' : 'свернуто'}
                             </p>
                         </motion.div>
 
